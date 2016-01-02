@@ -36,7 +36,7 @@
             "name": "position",
             "in": "query",
             "description": "Returns only players matching the position. Valid value is one of QB, RB, WR, TE, K or DEF.",
-            "type": "string",
+            "type": "string"
           },
           {
             "name": "team",
