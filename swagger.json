@@ -5,7 +5,7 @@
     "title": "League Lytics Football API",
     "description": "The API to football related data on League Lytics"
   },
-  "host": "apps.leagelytics.com",
+  "host": "app.leaguelytics.com",
   "schemes": [
     "http",
     "https"
@@ -37,7 +37,6 @@
             "in": "query",
             "description": "Returns only players matching the position. Valid value is one of QB, RB, WR, TE, K or DEF.",
             "type": "string",
-            "default": "All position types will be returned"
           },
           {
             "name": "team",
