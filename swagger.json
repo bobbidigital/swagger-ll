@@ -96,6 +96,70 @@
             "description": "The player was not found"
           }
         }
+      },
+      "/teams": {
+        "get": {
+          "summary": "Teams API",
+          "descripton": "Returns all 32 teams and Free agents",
+           "parameters": [
+            {
+              "name": "conference",
+              "in": "query",
+              "description": "Filter teams returned by conference. Valid values are AFC and NFC",
+              "type": "string",
+              "format": "string"
+            },
+            {
+              "name": "division", 
+              "in": "query",
+              "description": "Filter teams by division. Valid values are NORTH, SOUTH, EAST, WEST",
+              "type": "string",
+              "format": "string"
+            }
+          ],
+          "tags": [
+            "Players"
+          ],
+          "responses": {
+            "200": {
+              "description": "The team(s) were found and returned",
+              "schema": {
+                "$ref": "#/definitions/Team"
+              }
+            }
+
+          }
+        }
+      },
+      "/teams/{id}": {
+        "get": {
+          "summary": "Returns specified team",
+          "description": "Returns the team specified by {id}",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "The unique identifier for the desired team",
+              "type": "integer",
+              "required": true
+            }
+          ]
+        }
+      },
+      "/teams/{id}/players": {
+        "get": {
+          "summary": "Return all players for a team",
+          "description": "Returns all player objects that belong to the specified team",
+          "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The unique identifier for the desired team",
+            "type": "integer",
+            "required": true
+            }
+          ]
+        }
       }
     }
   },
@@ -126,6 +190,35 @@
         "team_id": {
           "type": "integer",
           "description": "Unique idenfiter for the team that the player belongs to"
+        }
+      }
+    },
+    "Team": {
+      "type": "object",
+      "properties": {
+        "team_id": {
+          "type": "string",
+          "description": "Unique identifier for the team object"
+        },
+        "conference": {
+          "type": "string",
+          "description": "Name of the conference the team belongs to. Valid values are NFC and AFC"
+        },
+        "division": {
+          "type": "string",
+          "description": "Name of the division the team belongs to. Valid values are NORTH, SOUTH, EAST and WEST"
+        },
+        "city": {
+          "type": "string",
+          "description": "The name of the city the team is based out of. Example: Atlanta"
+        },
+        "name": {
+          "type": "string",
+          "description": "The standalone team name. Example: Falcons"
+        },
+        "logo_url": {
+          "type": "string",
+          "description": "The url for the team's logo image"
         }
       }
     },
