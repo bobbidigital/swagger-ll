@@ -95,7 +95,7 @@
     "/teams": {
       "get": {
         "summary": "Teams API",
-        "descripton": "Returns all 32 teams and Free agents",
+        "description": "Returns all 32 teams and Free agents",
         "parameters": [{
           "name": "conference",
           "in": "query",
@@ -260,4 +260,4 @@
       }
     }
   }
-}
+} 
