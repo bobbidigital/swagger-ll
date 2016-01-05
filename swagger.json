@@ -15,30 +15,26 @@
       "get": {
         "summary": "Active Players",
         "description": "The players endpoint returns general information regarding players in the system. The endpoint is paginated and will need to be called several times to traverse everything.",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "limit",
             "in": "query",
             "description": "The number of players to return per page.",
             "type": "integer",
             "format": "int32",
             "default": 10
-          },
-          {
+          }, {
             "name": "page",
             "in": "query",
             "description": "The page of results to be returned.",
             "type": "integer",
             "format": "int32",
             "default": 1
-          },
-          {
+          }, {
             "name": "position",
             "in": "query",
             "description": "Returns only players matching the position. Valid value is one of QB, RB, WR, TE, K or DEF.",
             "type": "string"
-          },
-          {
+          }, {
             "name": "team",
             "in": "query",
             "description": "Returns only players that belong to the team specified. The value should be the team's unique ID",
@@ -73,15 +69,13 @@
       "get": {
         "summary": "Returns the player specified by id",
         "description": "This endpoint returns a player object specified by id",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "type": "integer",
-            "required": true,
-            "description": "The ID of the player you wish to retrieve"
-          }
-        ],
+        "parameters": [{
+          "name": "id",
+          "in": "path",
+          "type": "integer",
+          "required": true,
+          "description": "The ID of the player you wish to retrieve"
+        }],
         "tags": [
           "Players"
         ],
@@ -96,86 +90,99 @@
             "description": "The player was not found"
           }
         }
-      },
-      "/teams": {
-        "get": {
-          "summary": "Teams API",
-          "descripton": "Returns all 32 teams and Free agents",
-           "parameters": [
-            {
-              "name": "conference",
-              "in": "query",
-              "description": "Filter teams returned by conference. Valid values are AFC and NFC",
-              "type": "string",
-              "format": "string"
-            },
-            {
-              "name": "division", 
-              "in": "query",
-              "description": "Filter teams by division. Valid values are NORTH, SOUTH, EAST, WEST",
-              "type": "string",
-              "format": "string"
-            }
-          ],
-          "tags": [
-            "Teams"
-          ],
-          "responses": {
-            "200": {
-              "description": "The team(s) were found and returned",
-              "schema": {
-                "$ref": "#/definitions/Team"
-              }
-            }
-
-          }
-        }
-      },
-      "/teams/{id}": {
-        "get": {
-          "summary": "Returns specified team",
-          "description": "Returns the team specified by {id}",
-          "parameters": [
-            {
-              "name": "id",
-              "in": "path",
-              "description": "The unique identifier for the desired team",
-              "type": "integer",
-              "required": true
-            }
-          ],
-	  "tags": [
-	    "Teams"
-          ],
-          "responses": {
-            "200": {
-              "description": "The team was found and returned",
-              "$schema": {
-		"$ref": "#/definitions/Team"
-	      }
-            },
-            "404": {
-	      "description": "The team was not found",
-              "$schema": {
+      }
+    },
+    "/teams": {
+      "get": {
+        "summary": "Teams API",
+        "descripton": "Returns all 32 teams and Free agents",
+        "parameters": [{
+          "name": "conference",
+          "in": "query",
+          "description": "Filter teams returned by conference. Valid values are AFC and NFC",
+          "type": "string",
+          "format": "string"
+        }, {
+          "name": "division",
+          "in": "query",
+          "description": "Filter teams by division. Valid values are NORTH, SOUTH, EAST, WEST",
+          "type": "string",
+          "format": "string"
+        }],
+        "tags": [
+          "Teams"
+        ],
+        "responses": {
+          "200": {
+            "description": "The team(s) were found and returned",
+            "schema": {
+              "type": "array",
+              "items": {
                 "$ref": "#/definitions/Team"
               }
             }
           }
         }
-      },
-      "/teams/{id}/players": {
-        "get": {
-          "summary": "Return all players for a team",
-          "description": "Returns all player objects that belong to the specified team",
-          "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "The unique identifier for the desired team",
-            "type": "integer",
-            "required": true
+      }
+    },
+    "/teams/{id}": {
+      "get": {
+        "summary": "Returns specified team",
+        "description": "Returns the team specified by id",
+        "parameters": [{
+          "name": "id",
+          "in": "path",
+          "description": "The unique identifier for the desired team",
+          "type": "integer",
+          "required": true
+        }],
+        "tags": [
+          "Teams"
+        ],
+        "responses": {
+          "200": {
+            "description": "The team was found and returned",
+            "$schema": {
+              "$ref": "#/definitions/Team"
             }
-          ]
+          },
+          "404": {
+            "description": "The team was not found"
+          }
+        }
+      }
+    },
+    "/teams/{id}/players": {
+      "get": {
+        "summary": "Return all players for a team",
+        "description": "Returns all player objects that belong to the specified team",
+        "parameters": [{
+          "name": "id",
+          "in": "path",
+          "description": "The unique identifier for the desired team",
+          "type": "integer",
+          "required": true
+        }],
+        "tags": [
+          "Teams",
+          "Players"
+        ],
+        "responses": {
+          "200": {
+            "description": "The request completed successfully",
+            "$schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Player"
+              }
+            }
+          },
+          "default": {
+            "description": "The team specified by ID could not be found",
+            "$schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
         }
       }
     }
