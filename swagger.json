@@ -58,7 +58,7 @@
           },
           "default": {
             "description": "Unexpected Error",
-            "schema": {
+            "$schema": {
               "$ref": "#/definitions/Error"
             }
           }
@@ -82,7 +82,7 @@
         "responses": {
           "200": {
             "description": "The player was found and returned",
-            "schema": {
+            "$schema": {
               "$ref": "#/definitions/Player"
             }
           },
@@ -115,7 +115,7 @@
         "responses": {
           "200": {
             "description": "The team(s) were found and returned",
-            "schema": {
+            "$schema": {
               "type": "array",
               "items": {
                 "$ref": "#/definitions/Team"
