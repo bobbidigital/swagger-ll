@@ -118,7 +118,7 @@
             }
           ],
           "tags": [
-            "Players"
+            "Teams"
           ],
           "responses": {
             "200": {
@@ -143,7 +143,24 @@
               "type": "integer",
               "required": true
             }
-          ]
+          ],
+	  "tags": [
+	    "Teams"
+          ],
+          "responses": {
+            "200": {
+              "description": "The team was found and returned",
+              "$schema": {
+		"$ref": "#/definitions/Team"
+	      }
+            },
+            "404": {
+	      "description": "The team was not found",
+              "$schema": {
+                "$ref": "#/definitions/Team"
+              }
+            }
+          }
         }
       },
       "/teams/{id}/players": {
