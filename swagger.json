@@ -58,7 +58,7 @@
           },
           "default": {
             "description": "Unexpected Error",
-            "$schema": {
+            "schema": {
               "$ref": "#/definitions/Error"
             }
           }
@@ -82,7 +82,7 @@
         "responses": {
           "200": {
             "description": "The player was found and returned",
-            "$schema": {
+            "schema": {
               "$ref": "#/definitions/Player"
             }
           },
@@ -115,7 +115,7 @@
         "responses": {
           "200": {
             "description": "The team(s) were found and returned",
-            "$schema": {
+            "schema": {
               "type": "array",
               "items": {
                 "$ref": "#/definitions/Team"
@@ -142,7 +142,7 @@
         "responses": {
           "200": {
             "description": "The team was found and returned",
-            "$schema": {
+            "schema": {
               "$ref": "#/definitions/Team"
             }
           },
@@ -170,7 +170,7 @@
         "responses": {
           "200": {
             "description": "The request completed successfully",
-            "$schema": {
+            "schema": {
               "type": "array",
               "items": {
                 "$ref": "#/definitions/Player"
@@ -179,7 +179,7 @@
           },
           "default": {
             "description": "The team specified by ID could not be found",
-            "$schema": {
+            "schema": {
               "$ref": "#/definitions/Error"
             }
           }
